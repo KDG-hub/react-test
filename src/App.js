@@ -1,10 +1,10 @@
 
-import Counter from "./Counter";
+import Popup from "./Popup";
 
 function App() {
   return (
     <>
-      <Counter />
+      <Popup />
     </>
   );
 }
