@@ -1,10 +1,10 @@
 
-import Popup from "./Popup";
+import ProdList from "./ProdList";
 
 function App() {
   return (
     <>
-      <Popup />
+      <ProdList className="container mx-auto" />
     </>
   );
 }
