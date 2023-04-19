@@ -1,12 +1,11 @@
+import React, {useState} from "react";
+import NoRecord from "./NoRecord";
 
-import ProdList from "./ProdList";
 
-function App() {
+export default function App() {
   return (
     <>
-      <ProdList className="container mx-auto" />
+      <NoRecord />
     </>
   );
 }
-
-export default App;

@@ -10,7 +10,7 @@ export default function Popup() {
       <hr />
       {`popupVisble : ${popupVisble}`}
       {popupVisble && <div style={{width : 100, height : 100, border}}></div>}
-      <button className="btn btn-primary">Button</button>
+
     </>
   );
 }
