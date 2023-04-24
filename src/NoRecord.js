@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 export default function NoRecord() {
   const [recordedNos, setRecordedNos] = useState([]);
+  const noInputRef = useRef(null);
 
   const saveNo = (form) => {
     form.no.value = form.no.value.trim();
     if (form.no.length === 0) {
       alert("숫자를 입력해주세요.");
-      form.no.focus();
+      noInputRef.current.focus();
       return;
     }
 
     setRecordedNos([...recordedNos, form.no.value]);
     form.no.vlaue = "";
-    form.no.focus();
+    noInputRef.current.focus();
   };
 
   // const li = [1, 2, 3].map((el, index) => <li key={index}>{el}</li>);
@@ -27,13 +28,13 @@ export default function NoRecord() {
           saveNo(e.target);
         }}
       >
-        <input type="number" name="no" />
+        <input ref={noInputRef} type="number" name="no" />
         <button type="submit">기록</button>
       </form>
       {/* 버전1 */}
       <hr />
-      기록된 숫자 : [{recordedNos.join(",")}]{/* 버전2 */}
       <h1>기록된 숫자 v1</h1>
+      기록된 숫자 : [{recordedNos.join(",")}]{/* 버전2 */}
       <hr />
       <h1>기록된 숫자 v2</h1>
       <ul>{li}</ul>
