@@ -28,12 +28,12 @@ export default function RefEx() {
     };
     
     const removeNo = (index) => {
-      const newRecordedNos = recordedNos.filter((_, _index) => _index != index);
+      const newRecordedNos = recordedNos.filter((_, _index) => _index !== index);
       setRecordedNos(newRecordedNos);
     };
 
     const modifyNo = (index, newNo) =>{
-      setRecordedNos(recordedNos.map((el, _index) => _index === index ? newNo : el)); 
+      setRecordedNos(recordedNos.map((el, _index) => _index == index ? newNo : el)); 
     }
     
   
@@ -53,9 +53,7 @@ export default function RefEx() {
           />
           <button type="submit">기록</button>
         </form>
-  
         <hr />
-  
         <h1>기록된 숫자</h1>
         <ul>
           {recordedNos.map((el, index) => (
