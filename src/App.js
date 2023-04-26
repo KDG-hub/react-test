@@ -1,66 +1,38 @@
-/* eslint-disable eqeqeq */
-import React, {useState,useRef} from "react";
-import classnames from "https://cdn.skypack.dev/classnames";
+import React, { useState, useEffect } from "react";
 
-function NotifyOnce({ children }) {
-  const [visible, setVisible] = useState(false);
-  const [workDone, setworkDone] = useState(false);
-  
-  if ( workDone == false ) {
-    setTimeout(function () {
-      setVisible(true);
-    }, 1000);
+let AppCallCount = 0;
 
-    setTimeout(function () {
-      setVisible(false);
-    }, 3000);
-    
-    setworkDone(true);
-  }
+function App() {
+  AppCallCount++;
+  console.log(`AppCallCount :  ${AppCallCount}`);
+  const [no, setNo] = useState(0);
+  const [isdark, setIsdark] = useState(false);
 
-  return (
-    <div
-      className={classnames(
-        "fixed transition-all right-[10px]",
-        {
-          "top-[-60px]": !visible
-        },
-        {
-          "top-[10px]": visible
-        }
-      )}
-    >
-      {children}
-    </div>
-  );
-}
-function Alert({color:color_, children}) {
-  const color = color_ ?? "white";
-  
-  return (
-    <div className="alert alert-info shadow-lg">
-      <div className={`text-[${color}]`}>
-        <span>
-          <i className="fa-solid fa-circle-info"></i>
-        </span>
-        <span>{children}</span>
-      </div>
-    </div>
-  )
-}
+  useEffect(()=> {
+    const html = document.getElementsByTagName('html')[0];
+    if(isdark){
+      html.classList.add("dark");
+    }else{
+      html.classList.remove("dark");
+    }
+  })
 
-export default function App() {
   return (
     <>
-      <NotifyOnce>
-        <Alert>"안녕." 그녀는 말했다.</Alert>
-      </NotifyOnce>
       <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat modi
-        ducimus, sunt harum laboriosam deserunt aliquam quas architecto odio
-        neque voluptas! Voluptatum perferendis quis fugit nobis sunt obcaecati
-        corporis tempore!
+        <button className="btn btn-outline" onClick={() => setNo(no + 1)}>
+          APP 버튼 : {no}
+        </button>
+        <hr />
+        <button className="btn btn-outline" onClick={() => setIsdark(!isdark)}>
+          테마토글
+        </button>
+        <hr />
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur dolorem est a optio velit deserunt qui, excepturi ullam voluptas. Voluptatibus vel nisi illum molestiae doloremque, sequi libero eum ducimus minima?</div>
+        <h1 className="color-primary">안녕 반가워</h1>
       </div>
     </>
   );
 }
+
+export default App;
